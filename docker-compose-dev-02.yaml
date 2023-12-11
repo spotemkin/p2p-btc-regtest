@@ -5,21 +5,21 @@ services:
     user: "1000:1000"
     image: lncm/bitcoind:v25.0
     volumes:
-      # - ./bitcoin:/data/.bitcoin
+      - ./data:/data/.bitcoin
       - ./bitcoin:/bitcoin/.bitcoin
     # command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
     ports:
-      - 8332:8332 # mainnet
-      - 8333:8333 # mainnet
-      - 8334:8334 # mainnet
+      # - 8332:8332 # mainnet
+      # - 8333:8333 # mainnet
+      # - 8334:8334 # mainnet
       # - 18332:18332 # testnet
       # - 18333:18333 # testnet
       # - 18334:18334 # testnet
-      # - 18443:18443 # regtest
-      # - 18444:18444 # regtest
-      # - 18445:18445 # regtest
+      - 18443:18443 # regtest
+      - 18444:18444 # regtest
+      - 18445:18445 # regtest
 
     labels:
 
@@ -37,10 +37,9 @@ services:
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
 
-      - traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
-
+      #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
       # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
-      # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18443 # regtest
+      - traefik.tcp.services.bitcoind.loadbalancer.server.port=18443 # regtest
 
 networks:
   traefik:

@@ -1,4 +1,4 @@
-name: P2P NODE BITCOIN MAINNET to DEV
+name: P2P NODE BITCOIN REGTEST to DEV
 
 on:
   workflow_dispatch:
