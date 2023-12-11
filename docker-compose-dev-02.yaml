@@ -7,7 +7,7 @@ services:
     volumes:
       - ./data:/data/.bitcoin
       - ./bitcoin:/bitcoin/.bitcoin
-    command: ["-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+    # command: ["-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
     ports:
