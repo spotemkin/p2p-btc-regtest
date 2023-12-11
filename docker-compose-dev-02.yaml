@@ -7,8 +7,8 @@ services:
     image: lncm/bitcoind:v25.0
     volumes:
       - ./bitcoin:/data/.bitcoin
-      # - /path/to/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
-    # command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+      - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
+    command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
     ports:
