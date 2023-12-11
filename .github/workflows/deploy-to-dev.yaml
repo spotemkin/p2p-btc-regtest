@@ -21,7 +21,7 @@ jobs:
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
           source: docker-compose-dev-02.yaml
-          target: /srv
+          target: /srv/${{ github.repository }}
           overwrite: true
           debug: true
 
@@ -29,7 +29,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           script: |
-            cd /srv
+            cd /srv/${{ github.repository }}
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
