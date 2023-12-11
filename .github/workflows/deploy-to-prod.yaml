@@ -1,1 +1,10 @@
-PROD
+name: Deploy P2P NODE BITCOIN MAINNET to PROD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-22.04
+    environment:
+      name: prod
