@@ -2,13 +2,12 @@ version: "3.9"
 services:
   bitcoin:
     container_name: bitcoind
-    user: 1000:1000
+    user: "1000:1000"
     image: lncm/bitcoind:v25.0
     volumes:
       - ./bitcoin:/data/.bitcoin
       - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
-    # command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
-    command: ["tail", "-f", "/dev/null"]
+    command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
     ports:
