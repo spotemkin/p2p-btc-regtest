@@ -7,7 +7,7 @@ services:
     volumes:
       - ./data:/data/.bitcoin
       - ./bitcoin:/bitcoin/.bitcoin
-    # command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+    command: ["/bin/sh", "-c", "bitcoin-cli stop; sleep 5; exec bitcoind -conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
     ports:
