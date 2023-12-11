@@ -29,7 +29,7 @@ services:
 
       - traefik.enable=true
       - traefik.tcp.routers.bitcoind-secure.rule=HostSNI(`${BITCOIN_DOMAIN}`)
-      - traefik.tcp.routers.bitcoind-secure.entrypoints=websecure
+      - traefik.tcp.routers.bitcoind-secure.entrypoints=webSecure
       - traefik.tcp.routers.bitcoind-secure.tls=true
       - traefik.tcp.routers.bitcoind-secure.tls.certresolver=letsEncrypt
       - traefik.tcp.routers.bitcoind-secure.service=bitcoind
