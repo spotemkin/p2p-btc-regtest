@@ -7,7 +7,7 @@ services:
     volumes:
       - ./bitcoin:/data/.bitcoin
       - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
-    command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+    # command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     command: ["tail", "-f", "/dev/null"]
     restart: always
     stop_grace_period: 15m30s
