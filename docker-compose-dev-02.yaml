@@ -28,15 +28,24 @@ services:
     labels:
 
       - traefik.enable=true
-      - traefik.tcp.routers.bitcoind-secure.rule=HostSNI(`${BITCOIN_DOMAIN}`)
-      - traefik.tcp.routers.bitcoind-secure.entrypoints=webSecure
-      - traefik.tcp.routers.bitcoind-secure.tls=true
-      - traefik.tcp.routers.bitcoind-secure.tls.certresolver=letsEncrypt
-      - traefik.tcp.routers.bitcoind-secure.service=bitcoind
+      - traefik.http.routers.bitcoin.rule=Host(`${BITCOIN_DOMAIN}`)
+      - traefik.http.routers.bitcoin.service=api@internal
+      # - traefik.http.routers.bitcoin.middlewares=auth@file
+      - traefik.http.routers.bitcoin.entryPoints=web
+      # - traefik.http.routers.bitcoin.middlewares=redirect-to-https
 
-      - traefik.tcp.routers.bitcoind.rule=Host(`${BITCOIN_DOMAIN}`)
-      - traefik.tcp.routers.bitcoind.entrypoints=web
-      - traefik.tcp.routers.bitcoind.middlewares=redirect-to-https
+      - traefik.http.routers.bitcoinSecure.rule=Host(`${BITCOIN_DOMAIN}`)
+      - traefik.http.routers.bitcoinSecure.service=api@internal
+      # - traefik.http.routers.bitcoinSecure.middlewares=auth@file
+      - traefik.http.routers.bitcoinSecure.entryPoints=webSecure
+      - traefik.http.routers.bitcoinSecure.tls.certResolver=letsEncrypt
+
+      - traefik.http.middlewares.bitcoin-headers.headers.FrameDeny=true
+      - traefik.http.middlewares.bitcoin-headers.headers.browserXssFilter=true
+      - traefik.http.middlewares.bitcoin-headers.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.bitcoin-headers.headers.stsSeconds=315360000
+      - traefik.http.middlewares.bitcoin-headers.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.bitcoin-headers.headers.stsPreload=true
 
 
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
@@ -44,7 +53,7 @@ services:
 
       #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
       # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
-      - traefik.tcp.services.bitcoind.loadbalancer.server.port=18443 # regtest
+      - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
 
 networks:
   traefik:
