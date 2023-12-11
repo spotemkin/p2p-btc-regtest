@@ -34,7 +34,7 @@ services:
       - traefik.tcp.routers.bitcoind-secure.tls.certresolver=letsEncrypt
       - traefik.tcp.routers.bitcoind-secure.service=bitcoind
 
-      - traefik.tcp.routers.bitcoind.rule=HostSNI(`${BITCOIN_DOMAIN}`)
+      - traefik.tcp.routers.bitcoind.rule=Host(`${BITCOIN_DOMAIN}`)
       - traefik.tcp.routers.bitcoind.entrypoints=web
       - traefik.tcp.routers.bitcoind.middlewares=redirect-to-https
 
