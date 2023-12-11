@@ -36,7 +36,7 @@ services:
 
       - traefik.tcp.routers.bitcoind.rule=HostSNI(`${BITCOIN_DOMAIN}`)
       - traefik.tcp.routers.bitcoind.entrypoints=web
-      - traefik.tcp.routers.bitcoind.middlewares=redirect-to-https@docker
+      - traefik.tcp.routers.bitcoind.middlewares=redirect-to-https
 
 
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
