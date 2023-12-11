@@ -5,8 +5,8 @@ services:
     user: "1000:1000"
     image: lncm/bitcoind:v25.0
     volumes:
-      - ./bitcoin:/data/.bitcoin
-      - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
+      # - ./bitcoin:/data/.bitcoin
+      - ./bitcoin:/bitcoin/.bitcoin
     command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     restart: always
     stop_grace_period: 15m30s
