@@ -23,8 +23,8 @@ services:
       - 18443:18443 # regtest
       - 18444:18444 # regtest
       - 18445:18445 # regtest
-      - 28332:28332
-      - 28333:28333
+      # - 28332:28332
+      # - 28333:28333
     labels:
 
       - traefik.enable=true
@@ -53,7 +53,7 @@ services:
 
       #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
       # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
-      - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
+      # - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
 
 networks:
   traefik:
