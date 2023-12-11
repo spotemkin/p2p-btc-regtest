@@ -1,4 +1,4 @@
-name: Deploy P2P NODE BITCOIN MAINNET to PROD
+name: P2P NODE BITCOIN MAINNET to PROD
 
 on:
   workflow_dispatch:

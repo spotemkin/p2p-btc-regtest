@@ -1,4 +1,4 @@
-name: Deploy P2P NODE BITCOIN to DEV
+name: P2P NODE BITCOIN MAINNET to DEV
 
 on:
   workflow_dispatch:
@@ -30,17 +30,12 @@ jobs:
         with:
           script: |
             cd /srv
-            touch .htpasswd
-            htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
-            export EMAIL=${{ vars.EMAIL }}
-            export TRAEFIK_DOMAIN=${{ vars.TRAEFIK_DOMAIN }}
-            export METRICS_DOMAIN=${{ vars.METRICS_DOMAIN }}
-            export WHOAMI_DOMAIN=${{ vars.WHOAMI_DOMAIN }}
-            export NODE_DOMAIN=${{ vars.NODE_DOMAIN }}
-            export PROMETHEUS_DOMAIN=${{ vars.PROMETHEUS_DOMAIN }}
-            docker compose -f docker-compose-dev.yaml pull
-            docker compose -f docker-compose-dev.yaml down
-            docker compose -f docker-compose-dev.yaml up -d --remove-orphans
+            # touch .htpasswd
+            # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
+            export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
+            docker compose -f docker-compose-dev-main.yaml pull
+            docker compose -f docker-compose-dev-main.yaml down
+            docker compose -f docker-compose-dev-main.yaml up -d --remove-orphans
           host: ${{ vars.MAIN_DOMAIN }}
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
