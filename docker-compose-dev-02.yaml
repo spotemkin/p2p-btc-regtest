@@ -3,7 +3,7 @@ version: "3.8"
 services:
   bitcoin:
     container_name: bitcoind
-    user: 1000:1000
+    # user: 1000:1000
     image: lncm/bitcoind:v25.0
     volumes:
       - ./bitcoin:/data/.bitcoin
