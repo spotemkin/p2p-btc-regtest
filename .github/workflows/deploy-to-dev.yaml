@@ -20,7 +20,7 @@ jobs:
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
-          source: docker,docker-compose-dev-main.yaml
+          source: docker,docker-compose-dev-02.yaml
           target: /srv
           overwrite: true
           debug: true
@@ -33,9 +33,9 @@ jobs:
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
-            docker compose -f docker-compose-dev-main.yaml pull
-            docker compose -f docker-compose-dev-main.yaml down --verbose
-            docker compose -f docker-compose-dev-main.yaml up -d --remove-orphans
+            docker compose -f docker-compose-dev-02.yaml pull
+            docker compose -f docker-compose-dev-02.yaml down --verbose
+            docker compose -f docker-compose-dev-02.yaml up -d --remove-orphans
           host: ${{ vars.MAIN_DOMAIN }}
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
