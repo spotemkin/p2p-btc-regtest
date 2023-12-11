@@ -1,5 +1,4 @@
-version: "3.8"
-
+version: "3.9"
 services:
   bitcoin:
     container_name: bitcoind
@@ -9,6 +8,7 @@ services:
       - ./bitcoin:/data/.bitcoin
       - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
     command: ["bitcoind", "-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+    command: ["tail", "-f", "/dev/null"]
     restart: always
     stop_grace_period: 15m30s
     ports:
