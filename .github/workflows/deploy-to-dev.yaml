@@ -20,7 +20,7 @@ jobs:
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
-          source: docker,docker-compose-dev.yaml
+          source: docker,docker-compose-dev-main.yaml
           target: /srv
           overwrite: true
           debug: true
