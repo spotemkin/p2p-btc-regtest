@@ -14,12 +14,12 @@ services:
     restart: always
     stop_grace_period: 15m30s
     ports:
-      - 8332:8332 # mainnet
-      - 8333:8333 # mainnet
-      - 8334:8334 # mainnet
-      - 18332:18332 # testnet
-      - 18333:18333 # testnet
-      - 18334:18334 # testnet
+      # - 8332:8332 # mainnet
+      # - 8333:8333 # mainnet
+      # - 8334:8334 # mainnet
+      # - 18332:18332 # testnet
+      # - 18333:18333 # testnet
+      # - 18334:18334 # testnet
       - 18443:18443 # regtest
       - 18444:18444 # regtest
       - 18445:18445 # regtest
