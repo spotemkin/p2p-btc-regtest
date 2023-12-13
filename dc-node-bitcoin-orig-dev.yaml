@@ -56,12 +56,8 @@ services:
 
       - traefik.tcp.routers.bitcoin.rule=HostSNI(`${BITCOIN_DOMAIN}`)
       - traefik.tcp.routers.bitcoin.entrypoints=bitcoin
-      - traefik.tcp.routers.bitcoin.service=bitcoind
-      - traefik.tcp.services.bitcoind.loadbalancer.server.port=18443
-
-      #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
-      # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
-      # - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
+      - traefik.tcp.routers.bitcoin.service=bitcoin
+      - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443
 
 networks:
   traefik:
