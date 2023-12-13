@@ -15,4 +15,4 @@ EXPOSE 18443
 EXPOSE 18444
 EXPOSE 18445
 
-CMD ["./bitcoin/bin/bitcoind"]
+CMD ["/bitcoin/bin/bitcoind"]

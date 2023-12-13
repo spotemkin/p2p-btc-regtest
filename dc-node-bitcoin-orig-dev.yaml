@@ -12,7 +12,7 @@ services:
       - ./data:/data
     command:
       [
-        "./bitcoin/bin/bitcoind",
+        "/bitcoin/bin/bitcoind",
         "-printtoconsole",
         "-server=1",
         "-regtest=1",
