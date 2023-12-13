@@ -11,15 +11,18 @@ services:
       # - ./bitcoin/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
       - ./data:/data
     # command: ["-conf=/bitcoin/.bitcoin/bitcoin.conf"]
-    command: -printtoconsole
-      -server=1
-      -regtest=1
-      -rpcallowip=0.0.0.0/0
-      -rpcbind=0.0.0.0
-      -rpcuser=bitcoinnodetest
-      -rpcpassword=8f1o1iWBtEsteXwJ9
-      -debug=1
-      -debuglogfile=debug.log
+command:
+  - "bitcoind"
+  - "-printtoconsole"
+  - "-server=1"
+  - "-regtest=1"
+  - "-rpcallowip=0.0.0.0/0"
+  - "-rpcbind=0.0.0.0"
+  - "-rpcuser=bitcoinnodetest"
+  - "-rpcpassword=8f1o1iWBtEsteXwJ9"
+  - "-debug=1"
+  - "-debuglogfile=debug.log"
+  - "-datadir=/data"
 
     restart: always
     stop_grace_period: 15m30s
