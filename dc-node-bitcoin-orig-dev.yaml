@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   node-bitcoin:
-    build: ./Dockerfile.btc-orig
+    build: .
     container_name: bitcoind
     user: "1000:1000"
 
