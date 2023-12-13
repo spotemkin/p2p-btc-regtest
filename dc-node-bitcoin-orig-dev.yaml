@@ -9,7 +9,7 @@ services:
       # - ./data:/data/.bitcoin
       # - ./bitcoin:/data/.bitcoin
       # - ./bitcoin/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
-
+      - ./data:/data
     # command: ["-conf=/bitcoin/.bitcoin/bitcoin.conf"]
     command: -printtoconsole
       -server=1
