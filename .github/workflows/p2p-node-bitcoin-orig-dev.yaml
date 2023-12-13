@@ -1,4 +1,4 @@
-name: P2P NODE BITCOIN LNCM REGTEST to DEV
+name: P2P NODE BITCOIN ORIG REGTEST to DEV
 
 on:
   workflow_dispatch:

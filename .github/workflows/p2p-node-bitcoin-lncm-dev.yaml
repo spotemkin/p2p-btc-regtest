@@ -1,4 +1,4 @@
-name: P2P NODE BITCOIN ORIG REGTEST to DEV
+name: P2P NODE BITCOIN LNCM REGTEST to DEV
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
-          source: Dockerfile.btc-orig,dc-node-bitcoin-orig-dev.yaml
+          source: dc-node-bitcoin-lncm-dev.yaml
           target: /srv/node-bitcoin/
           overwrite: true
           debug: true
@@ -33,9 +33,9 @@ jobs:
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
-            docker compose -f docker-compose-dev-02.yaml pull
-            docker compose -f docker-compose-dev-02.yaml down
-            docker compose -f docker-compose-dev-02.yaml up -d --remove-orphans
+            docker compose -f dc-node-bitcoin-lncm-dev.yaml pull
+            docker compose -f dc-node-bitcoin-lncm-dev.yaml down
+            docker compose -f dc-node-bitcoin-lncm-dev.yaml up -d --remove-orphans
           host: ${{ vars.MAIN_DOMAIN }}
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
