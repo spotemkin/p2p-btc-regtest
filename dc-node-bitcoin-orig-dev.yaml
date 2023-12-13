@@ -3,7 +3,7 @@ services:
   node-bitcoin:
     build: .
     container_name: bitcoind
-    user: "1000:1000"
+    user: root
 
     volumes:
       # - ./data:/data/.bitcoin
