@@ -1,4 +1,4 @@
-name: P2P NODE BITCOIN REGTEST to DEV
+name: P2P NODE BITCOIN LNCM REGTEST to DEV
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
-          source: bitcoin,docker-compose-dev-02.yaml
+          source: bitcoin,dc-node-bitcoin-lncm-dev.yaml.yaml
           target: /srv/node-bitcoin/
           overwrite: true
           debug: true

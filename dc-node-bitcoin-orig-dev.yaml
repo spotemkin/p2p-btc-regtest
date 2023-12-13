@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  node-bitcoin:
+    build: ./Dockerfile.btc-orig
+    container_name: bitcoind
+    user: "1000:1000"
+
+    volumes:
+      # - ./data:/data/.bitcoin
+      # - ./bitcoin:/data/.bitcoin
+      # - ./bitcoin/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
+
+    # command: ["-conf=/bitcoin/.bitcoin/bitcoin.conf"]
+    command: -printtoconsole
+      -server=1
+      -regtest=1
+      -rpcallowip=0.0.0.0/0
+      -rpcbind=0.0.0.0
+      -rpcuser=bitcoinnodetest
+      -rpcpassword=8f1o1iWBtEsteXwJ9
+      -debug=1
+      -debuglogfile=debug.log
+
+    restart: always
+    stop_grace_period: 15m30s
+    ports:
+      - 18443:18443 # regtest
+      - 18444:18444 # regtest
+      - 18445:18445 # regtest
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bitcoin.rule=Host(`${BITCOIN_DOMAIN}`)
+      - traefik.http.routers.bitcoin.service=api@internal
+      # - traefik.http.routers.bitcoin.middlewares=auth@file
+      - traefik.http.routers.bitcoin.entryPoints=web
+      # - traefik.http.routers.bitcoin.middlewares=redirect-to-https
+
+      - traefik.http.routers.bitcoinSecure.rule=Host(`${BITCOIN_DOMAIN}`)
+      - traefik.http.routers.bitcoinSecure.service=api@internal
+      # - traefik.http.routers.bitcoinSecure.middlewares=auth@file
+      - traefik.http.routers.bitcoinSecure.entryPoints=webSecure
+      - traefik.http.routers.bitcoinSecure.tls.certResolver=letsEncrypt
+
+      - traefik.http.middlewares.bitcoin-headers.headers.FrameDeny=true
+      - traefik.http.middlewares.bitcoin-headers.headers.browserXssFilter=true
+      - traefik.http.middlewares.bitcoin-headers.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.bitcoin-headers.headers.stsSeconds=315360000
+      - traefik.http.middlewares.bitcoin-headers.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.bitcoin-headers.headers.stsPreload=true
+
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
+
+      #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
+      # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
+      # - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
+
+networks:
+  traefik:
+    external: true

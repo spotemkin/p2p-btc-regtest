@@ -26,7 +26,6 @@ services:
       # - 28332:28332
       # - 28333:28333
     labels:
-
       - traefik.enable=true
       - traefik.http.routers.bitcoin.rule=Host(`${BITCOIN_DOMAIN}`)
       - traefik.http.routers.bitcoin.service=api@internal
@@ -46,7 +45,6 @@ services:
       - traefik.http.middlewares.bitcoin-headers.headers.stsSeconds=315360000
       - traefik.http.middlewares.bitcoin-headers.headers.stsIncludeSubdomains=true
       - traefik.http.middlewares.bitcoin-headers.headers.stsPreload=true
-
 
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
