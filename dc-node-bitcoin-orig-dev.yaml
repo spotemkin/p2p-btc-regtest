@@ -54,6 +54,11 @@ services:
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
 
+      - traefik.tcp.routers.bitcoin.rule=HostSNI(`${BITCOIN_DOMAIN}`)
+      - traefik.tcp.routers.bitcoin.entrypoints=bitcoin
+      - traefik.tcp.routers.bitcoin.service=bitcoind
+      - traefik.tcp.services.bitcoind.loadbalancer.server.port=18443
+
       #- traefik.tcp.services.bitcoind.loadbalancer.server.port=8332 # mainnet
       # - traefik.tcp.services.bitcoind.loadbalancer.server.port=18332 # testnet
       # - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443 # regtest
