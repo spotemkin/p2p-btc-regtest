@@ -33,6 +33,11 @@ jobs:
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
+            export BITCOIN_PORT_REG_1=${{ secrets.BITCOIN_PORT_REG_1 }}
+            export BITCOIN_PORT_REG_2=${{ secrets.BITCOIN_PORT_REG_2 }}
+            export BITCOIN_PORT_REG_3=${{ secrets.BITCOIN_PORT_REG_3 }}
+            export BITCOIN_RPC_USER=${{ secrets.BITCOIN_RPC_USER }}
+            export BITCOIN_RPC_PASS=${{ secrets.BITCOIN_RPC_PASS }}
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml pull
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml down
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml up -d --remove-orphans
