@@ -21,7 +21,7 @@ jobs:
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
           source: Dockerfile,dc-node-bitcoin-orig-regtest-dev.yaml
-          target: /srv/node-bitcoin/
+          target: /srv/node-bitcoin-orig-regtest/
           overwrite: true
           debug: true
 
@@ -33,6 +33,7 @@ jobs:
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
+            export SSH_USER=${{ vars.vars.SSH_USER }}
             export BITCOIN_PORT_REG_1=${{ secrets.BITCOIN_PORT_REG_1 }}
             export BITCOIN_PORT_REG_2=${{ secrets.BITCOIN_PORT_REG_2 }}
             export BITCOIN_PORT_REG_3=${{ secrets.BITCOIN_PORT_REG_3 }}
