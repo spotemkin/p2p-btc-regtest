@@ -2,8 +2,8 @@ version: "3.9"
 services:
   node-bitcoin:
     build: .
-    container_name: bitcoind
-    user: root
+    container_name: bitcoin_regtest
+    user: ${SSH_USER}
 
     volumes:
       # - ./data:/data/.bitcoin
@@ -18,8 +18,8 @@ services:
         "-regtest=1",
         "-rpcallowip=0.0.0.0/0",
         "-rpcbind=0.0.0.0",
-        "-rpcuser=bitcoinnodetest",
-        "-rpcpassword=8f1o1iWBtEsteXwJ9",
+        "-rpcuser=${BITCOIN_RPC_USER}",
+        "-rpcpassword=${BITCOIN_RPC_PASS}",
         "-debug=1",
         "-debuglogfile=debug.log",
         "-datadir=/data",
@@ -27,9 +27,9 @@ services:
     restart: always
     stop_grace_period: 15m30s
     ports:
-      - 18443:18443 # regtest
-      - 18444:18444 # regtest
-      - 18445:18445 # regtest
+      - ${BITCOIN_PORT_REG_1}:${BITCOIN_PORT_REG_1}
+      - ${BITCOIN_PORT_REG_2}:${BITCOIN_PORT_REG_2}
+      - ${BITCOIN_PORT_REG_3}:${BITCOIN_PORT_REG_3}
     labels:
       - traefik.enable=true
       - traefik.http.routers.bitcoin.rule=Host(`${BITCOIN_DOMAIN}`)
@@ -57,7 +57,7 @@ services:
       - traefik.tcp.routers.bitcoin.rule=HostSNI(`${BITCOIN_DOMAIN}`)
       - traefik.tcp.routers.bitcoin.entrypoints=bitcoin
       - traefik.tcp.routers.bitcoin.service=bitcoin
-      - traefik.tcp.services.bitcoin.loadbalancer.server.port=18443
+      - traefik.tcp.services.bitcoin.loadbalancer.server.port=${BITCOIN_PORT_REG_1}
 
 networks:
   traefik:
