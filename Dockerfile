@@ -4,6 +4,7 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     wget \
     tar \
+    cron \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /bitcoin
 
