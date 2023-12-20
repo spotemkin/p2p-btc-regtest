@@ -20,7 +20,7 @@ jobs:
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.DEV_SERVER_KEY }}
-          source: Dockerfile,dc-node-bitcoin-orig-dev.yaml
+          source: Dockerfile,dc-node-bitcoin-orig-regtest-dev.yaml
           target: /srv/node-bitcoin/
           overwrite: true
           debug: true
@@ -33,9 +33,9 @@ jobs:
             # touch .htpasswd
             # htpasswd -bB .htpasswd ${{ vars.BASIC_AUTH_USER }} ${{ secrets.BASIC_AUTH_PASSWORD }}
             export BITCOIN_DOMAIN=${{ vars.BITCOIN_DOMAIN }}
-            docker compose -f dc-node-bitcoin-orig-dev.yaml pull
-            docker compose -f dc-node-bitcoin-orig-dev.yaml down
-            docker compose -f dc-node-bitcoin-orig-dev.yaml up -d --remove-orphans
+            docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml pull
+            docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml down
+            docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml up -d --remove-orphans
           host: ${{ vars.MAIN_DOMAIN }}
           port: ${{ vars.SSH_PORT }}
           username: ${{ vars.SSH_USER }}
