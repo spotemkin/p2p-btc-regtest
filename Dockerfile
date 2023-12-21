@@ -19,4 +19,4 @@ EXPOSE ${BITCOIN_PORT_REG_1}
 EXPOSE ${BITCOIN_PORT_REG_2}
 EXPOSE ${BITCOIN_PORT_REG_3}
 
-ENTRYPOINT ["/data/bitcoin-start.sh"]
+# ENTRYPOINT ["/data/bitcoin-start.sh"]
