@@ -23,7 +23,6 @@ services:
         "-debug=1",
         "-debuglogfile=debug.log",
         "-datadir=/data",
-        "-daemon=1",
       ]
     restart: always
     stop_grace_period: 15m30s
