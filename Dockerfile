@@ -12,11 +12,11 @@ RUN wget https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu
     && rm bitcoin-25.0-x86_64-linux-gnu.tar.gz
 
 # Copy and set permissions for the cron script
-COPY bitcoin-generate-block.sh /bitcoin/bitcoin-generate-block.sh
-RUN chmod +x /bitcoin/bitcoin-generate-block.sh
+# COPY bitcoin-generate-block.sh /bitcoin/bitcoin-generate-block.sh
+# RUN chmod +x /bitcoin/bitcoin-generate-block.sh
 
 EXPOSE ${BITCOIN_PORT_REG_1}
 EXPOSE ${BITCOIN_PORT_REG_2}
 EXPOSE ${BITCOIN_PORT_REG_3}
 
-CMD ["/bin/sh", "-c", "/bitcoin/bin/bitcoind & /bitcoin/bitcoin-generate-block.sh"]
+CMD ["/bin/sh", "-c", "/bitcoin/bin/bitcoind & /data/bitcoin-generate-block.sh"]
