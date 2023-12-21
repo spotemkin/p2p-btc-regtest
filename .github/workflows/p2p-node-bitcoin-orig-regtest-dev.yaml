@@ -13,6 +13,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
 
+      - name: Build and push
+        env:
+          BITCOIN_RPC_PASS: ${{ vars.BITCOIN_RPC_USER }}
+          BITCOIN_RPC_PASS: ${{ secrets.BITCOIN_RPC_PASS }}
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: .
+          build-args: |
+            "BITCOIN_RPC_PASS=${{ vars.BITCOIN_RPC_PASS }}"
+            "BITCOIN_RPC_PASS=${{ secrets.BITCOIN_RPC_PASS }}"
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+
       - name: Copy files on server
         uses: appleboy/scp-action@master
         with:
