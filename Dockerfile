@@ -19,4 +19,4 @@ EXPOSE ${BITCOIN_PORT_REG_1}
 EXPOSE ${BITCOIN_PORT_REG_2}
 EXPOSE ${BITCOIN_PORT_REG_3}
 
-CMD ["/bin/sh", "-c", "/bitcoin/bin/bitcoind & /data/bitcoin-generate-block.sh"]
+CMD ["/data/bitcoin-start.sh"]
