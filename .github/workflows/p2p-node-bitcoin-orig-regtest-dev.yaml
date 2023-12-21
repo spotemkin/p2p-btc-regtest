@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-22.04
     environment:
       name: dev
-    env:
-      BITCOIN_RPC_USER: ${{ vars.BITCOIN_RPC_USER }}
-      BITCOIN_RPC_PASS: ${{ secrets.BITCOIN_RPC_PASS }}
 
     steps:
       - name: Checkout
