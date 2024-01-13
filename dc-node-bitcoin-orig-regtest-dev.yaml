@@ -24,7 +24,7 @@ services:
         "-debug=1",
         "-debuglogfile=debug.log",
         "-datadir=/data",
-        "-fallbackfee",
+        "--fallbackfee=0.00001",
       ]
     restart: always
     stop_grace_period: 15m30s
