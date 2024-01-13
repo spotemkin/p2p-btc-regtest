@@ -39,6 +39,10 @@ jobs:
             export BITCOIN_PORT_REG_3=${{ vars.BITCOIN_PORT_REG_3 }}
             export BITCOIN_RPC_USER=${{ vars.BITCOIN_RPC_USER }}
             export BITCOIN_RPC_PASS=${{ secrets.BITCOIN_RPC_PASS }}
+            docker stop bitcoin_regtest
+            docker rm bitcoin_regtest
+            docker container prune -f
+            docker image prune -a -f
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml pull
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml down
             docker compose -f dc-node-bitcoin-orig-regtest-dev.yaml up -d --remove-orphans
