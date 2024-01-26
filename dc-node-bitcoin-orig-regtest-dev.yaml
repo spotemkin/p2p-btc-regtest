@@ -68,5 +68,5 @@ networks:
     external: true
   dobrobot_network:
     external: true
-      dobrobot_dobrobot_network:
+  dobrobot_dobrobot_network:
     external: true
