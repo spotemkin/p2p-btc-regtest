@@ -35,31 +35,33 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.bitcoin.rule=Host(`${BITCOIN_DOMAIN}`)
-      - traefik.http.routers.bitcoin.service=api@internal
+      - traefik.http.routers.bitcoin.service=bitcoin-service
       # - traefik.http.routers.bitcoin.middlewares=auth@file
       - traefik.http.routers.bitcoin.entryPoints=web
       - traefik.http.routers.bitcoin.middlewares=redirect-to-https
 
       - traefik.http.routers.bitcoinSecure.rule=Host(`${BITCOIN_DOMAIN}`)
-      - traefik.http.routers.bitcoinSecure.service=api@internal
+      - traefik.http.routers.bitcoinSecure.service=bitcoin-service
       # - traefik.http.routers.bitcoinSecure.middlewares=auth@file
       - traefik.http.routers.bitcoinSecure.entryPoints=webSecure
       - traefik.http.routers.bitcoinSecure.tls.certResolver=letsEncrypt
 
-      - traefik.http.middlewares.bitcoin-headers.headers.FrameDeny=true
-      - traefik.http.middlewares.bitcoin-headers.headers.browserXssFilter=true
-      - traefik.http.middlewares.bitcoin-headers.headers.contentTypeNosniff=true
-      - traefik.http.middlewares.bitcoin-headers.headers.stsSeconds=315360000
-      - traefik.http.middlewares.bitcoin-headers.headers.stsIncludeSubdomains=true
-      - traefik.http.middlewares.bitcoin-headers.headers.stsPreload=true
+      # - traefik.http.middlewares.bitcoin-headers.headers.FrameDeny=true
+      # - traefik.http.middlewares.bitcoin-headers.headers.browserXssFilter=true
+      # - traefik.http.middlewares.bitcoin-headers.headers.contentTypeNosniff=true
+      # - traefik.http.middlewares.bitcoin-headers.headers.stsSeconds=315360000
+      # - traefik.http.middlewares.bitcoin-headers.headers.stsIncludeSubdomains=true
+      # - traefik.http.middlewares.bitcoin-headers.headers.stsPreload=true
 
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
 
-      - traefik.tcp.routers.bitcoin.rule=HostSNI(`${BITCOIN_DOMAIN}`)
-      - traefik.tcp.routers.bitcoin.entrypoints=bitcoin
-      - traefik.tcp.routers.bitcoin.service=bitcoin
-      - traefik.tcp.services.bitcoin.loadbalancer.server.port=${BITCOIN_PORT_REG_1}
+      - "traefik.http.services.bitcoin-service.loadbalancer.server.port=${BITCOIN_PORT_REG_1}"
+
+      # - traefik.tcp.routers.bitcoin.rule=HostSNI(`${BITCOIN_DOMAIN}`)
+      # - traefik.tcp.routers.bitcoin.entrypoints=bitcoin
+      # - traefik.tcp.routers.bitcoin.service=bitcoin
+      # - traefik.tcp.services.bitcoin-service.loadbalancer.server.port=${BITCOIN_PORT_REG_1}
 
 networks:
   traefik:
