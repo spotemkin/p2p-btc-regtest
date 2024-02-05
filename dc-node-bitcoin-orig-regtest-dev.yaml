@@ -63,8 +63,14 @@ services:
       # - traefik.tcp.routers.bitcoin.service=bitcoin
       # - traefik.tcp.services.bitcoin-service.loadbalancer.server.port=${BITCOIN_PORT_REG_1}
 
+    networks:
+      - traefik
+      - dobrobot_network
+
 networks:
-  # traefik:
-    # external: true
-  dobrobot_dobrobot_network:
+  traefik:
     external: true
+    name: traefik
+  dobrobot_network:
+    external: true
+    name: dobrobot_network
